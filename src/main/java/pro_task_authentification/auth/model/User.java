@@ -2,8 +2,6 @@ package pro_task_authentification.auth.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -12,13 +10,14 @@ import jakarta.persistence.Table;
 public class User {
     
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    // @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "user_name", nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false)
+    @Column(name = "user_pass", nullable = false)
     private String password;
 
     public String getPassword() {
@@ -27,6 +26,10 @@ public class User {
 
     public String getUsername() {
         return username;
+    }
+
+    public Long getId() {
+        return id;
     }
     
 }

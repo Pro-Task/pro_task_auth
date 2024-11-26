@@ -24,7 +24,7 @@ public class AuthController {
     private final AuthService authService;
 
     @Value("${jwt.secret}")
-    private String jwtSecret; // Секретный ключ для подписи JWT
+    private String jwtSecret; // JWT-Key von .properties
 
     public AuthController(AuthService authService) {
         this.authService = authService;
@@ -38,10 +38,10 @@ public class AuthController {
             //Make JWT
             Key key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
             String token = Jwts.builder()
-                .setSubject(user.get().getUsername()) // Указываем имя пользователя в токене
-                .setIssuedAt(new Date()) // Время выпуска токена
-                .setExpiration(new Date(System.currentTimeMillis() + 3600000)) // Время жизни токена (1 час)
-                .signWith(key) // Подписываем токен секретным ключом
+                .setSubject(user.get().getUsername()) // userName
+                .setIssuedAt(new Date()) // StartTime
+                .setExpiration(new Date(System.currentTimeMillis() + 3600000)) // FinishTime
+                .signWith(key) // SekretKey
                 .compact();
             
             return ResponseEntity.ok(new AuthResponse(token));
