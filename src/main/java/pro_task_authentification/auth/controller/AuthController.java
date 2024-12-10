@@ -38,7 +38,7 @@ public class AuthController {
             //Make JWT
             Key key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
             String token = Jwts.builder()
-                .setSubject(user.get().getUsername()) // userName
+                .setSubject(user.get().getId().toString()) // userName
                 .setIssuedAt(new Date()) // StartTime
                 .setExpiration(new Date(System.currentTimeMillis() + 3600000)) // FinishTime
                 .signWith(key) // SekretKey

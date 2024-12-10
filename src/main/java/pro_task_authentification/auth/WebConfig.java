@@ -16,4 +16,5 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedHeaders("*") // heads
                 .allowCredentials(true); // cookie and auth
     }
+    
 }
